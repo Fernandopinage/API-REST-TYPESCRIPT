@@ -41,13 +41,10 @@ class User {
 
 	}
 
-	show(req: Request, res: Response) {
-
-		const value = req.body;
-
+	show(req: any) {
 		try
 		{
-			const result = Object.assign(value);
+			const result = Object.assign(req);
 			return { status: true, result: result };
 
 		} catch (error)
@@ -56,11 +53,11 @@ class User {
 		}
 	}
 
-	async create(req: Request, res: Response) {
+	async create(req: any) {
 
 		try
 		{
-			const result = this.listAll.push(req.body);
+			const result = this.listAll.push(req);
 
 			return { status: true, mensage: "record saved successfully" };
 
@@ -86,13 +83,12 @@ class User {
 
 	}
 
-	async edit(req: Request, res: Response) {
+	async edit(req: any) {
 
 		try
 		{
-
-			const edit = this.listAll.filter(e => e.id == req.body.id);
-			const result = edit[0].nome = req.body.nome;
+			const edit = this.listAll.filter(e => e.id == req.id);
+			const result = edit[0].nome = req.nome;
 
 			return { status: true, mensage: "record successfully changed" };
 
@@ -120,12 +116,12 @@ class User {
 
 	}
 
-	async destroy(req: Request, res: Response) {
+	async destroy(req: any) {
 
 		try
 		{
 
-			const remove = this.listAll.filter(e => e.id !== req.body.id);
+			const remove = this.listAll.filter(e => e.id !== req.id);
 			return { status: true, mensage: "record successfully removed", result: remove };
 
 		} catch (error)

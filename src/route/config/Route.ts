@@ -2,22 +2,22 @@ import UserRoute from "../UserRoute";
 import express from "express";
 class Route{
 
-    public app: express.Application;
+	public app: express.Application;
 
     
-    constructor(){
-        this.app = express();
-        this.middlewares();
-        this.getUserRoute();
-    }
+	constructor(){
+		this.app = express();
+		this.middlewares();
+		this.getUserRoute();
+	}
     
-    middlewares(): void {
-        this.app.use(express.json());
-    }
+	middlewares(): void {
+		this.app.use(express.json());
+	}
     
-    getUserRoute():void{
-        UserRoute.route(this.app)
-    }
+	getUserRoute():void{
+		UserRoute.route(this.app);
+	}
  
 
 }

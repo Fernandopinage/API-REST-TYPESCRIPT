@@ -16,7 +16,9 @@ class UserController{
 
 	async show(req: Request, res: Response){
 
-		const {status, result} = await User.show(req,res);
+		const value = req.body;
+		console.log(value);
+		const {status, result} = await User.show(value);
 
 		if(status){
 			return res.status(200).send({result});
@@ -27,8 +29,8 @@ class UserController{
 
 
 	async create(req:Request, res:Response){
-
-		const {status, result, mensage} = await User.create(req,res);
+		const value = req.body;
+		const {status, result, mensage} = await User.create(value);
 
 		if(status){
 			return res.status(201).send({mensage});
@@ -40,7 +42,7 @@ class UserController{
 
 	async store(req:Request, res:Response){
 
-		const {status, result, mensage} = await User.create(req,res);
+		const {status, result, mensage} = await User.create(req);
 
 		if(status){
 			return res.status(201).send({mensage});
@@ -50,8 +52,8 @@ class UserController{
 	}
 
 	async edit(req:Request, res:Response){
-
-		const {status, result, mensage} = await User.edit(req,res);
+		
+		const {status, result, mensage} = await User.edit(req);
 		if(status){
 			return res.status(200).send({mensage});
 		}else{
